@@ -1,0 +1,33 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{SSK98}
+
+\bibitem[BE06]{borodovsky2006problems}
+Mark Borodovsky and Svetlana Ekisheva, \emph{Problems and solutions in
+  biological sequence analysis}, Cambridge University Press, 2006.
+
+\bibitem[BK97]{burge1997prediction}
+Chris Burge and Samuel Karlin, \emph{Prediction of complete gene structures in
+  human genomic dna}, Journal of molecular biology \textbf{268} (1997), no.~1,
+  78--94.
+
+\bibitem[JM19]{Jurafsky:2009:SLP:1214993}
+Dan Jurafsky and James~H. Martin, \emph{Speech and language processing (3rd ed.
+  draft)}, 2019.
+
+\bibitem[Rab89]{rabiner1989tutorial}
+Lawrence~R Rabiner, \emph{A tutorial on hidden markov models and selected
+  applications in speech recognition}, Proceedings of the IEEE \textbf{77}
+  (1989), no.~2, 257--286.
+
+\bibitem[SSK98]{salzberg1998modeling}
+SL~Salzberg, DB~Searls, and S~Kasif, \emph{Modeling dependencies in pre-mrna
+  splicing signals}, Computational methods in molecular biology \textbf{32}
+  (1998), 129.
+
+\end{thebibliography}
