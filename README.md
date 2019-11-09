@@ -4,7 +4,7 @@
  * @School: Tsinghua Univ
  * @Date: 2019-11-09 22:31:29
  * @LastEditors: Xie Yufeng
- * @LastEditTime: 2019-11-09 22:53:04
+ * @LastEditTime: 2019-11-09 22:53:39
  -->
 # comp_bio
 **This is the notes of *Computational Biology* （80240343-0）Zhidong Deng teaches in fall of 2019, Tsinghua University.**
@@ -19,6 +19,8 @@ first_hw
 pre
   --final # powerpoint merged
   --img   # presentation image
+doc
+  --lesson files
 DailyMeiju
 hell
 request
