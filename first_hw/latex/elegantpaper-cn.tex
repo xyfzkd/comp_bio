@@ -1,0 +1,121 @@
+\documentclass[answers]{exam}
+\usepackage{xeCJK}
+\usepackage{zhnumber}
+\usepackage{booktabs}
+\usepackage{color,framed}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\pagestyle{headandfoot}
+\firstpageheadrule
+\firstpageheader{清华大学}{计算生物学}{第一次大作业}
+\runningheader{清华大学}
+{计算生物学}
+{第一次大作业}
+\runningheadrule
+\firstpagefooter{}{第\thepage\ 页（共\numpages 页）}{}
+\runningfooter{}{第\thepage\ 页（共\numpages 页）}{}
+
+\begin{document}
+\definecolor{shadecolor}{rgb}{0.92,0.92,0.92}
+\lstset{
+    numbers=left, 
+    numberstyle= \tiny, 
+    keywordstyle= \color{ blue!70},
+    commentstyle= \color{red!50!green!50!blue!50}, 
+    frame=shadowbox, % 阴影效果
+    rulesepcolor= \color{ red!20!green!20!blue!20} ,
+    escapeinside=``, % 英文分号中可写入中文
+    xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+    framexleftmargin=2em
+} 
+\lstset{ %
+backgroundcolor=\color{white},      % choose the background color
+basicstyle=\footnotesize\ttfamily,  % size of fonts used for the code
+columns=fullflexible,
+tabsize=4,
+breaklines=true,               % automatic line breaking only at whitespace
+captionpos=b,                  % sets the caption-position to bottom
+commentstyle=\color{mygreen},  % comment style
+escapeinside={\%*}{*)},        % if you want to add LaTeX within your code
+keywordstyle=\color{blue},     % keyword style
+stringstyle=\color{mymauve}\ttfamily,  % string literal style
+frame=single,
+rulesepcolor=\color{red!20!green!20!blue!20},
+% identifierstyle=\color{red},
+% language=c++,
+}
+
+\begin{questions}
+    \question[10] 设子串$S_1\left[1, \cdots, i\right]$ 和子串$S_2\left[1, \cdots, j\right]$之间的加权编辑距离（weighted edit distance）
+    为$D(i,j)$，$i(j)=0,1,2, \cdots, L_{1}\left(L_{2}\right)$。对双序列的全局比对问题，$D(i,j)$的递推关系为：
+    
+    \begin{equation}
+    D(i, j)=\min \left\{\begin{array}{l}{D(i, j-1)+d} \\ {D(i-1, j-1)+p(i, j)} \\ {D(i-1, j)+d}\end{array}\right.
+    \end{equation}
+
+    其中，若$S_1(i)=S_2(j)$（精确匹配），则$p(i,j)=0$；若$S_1(i)\neq S_2(j)$（失配），则$p(i,j)=1$；空位罚分$d=2$；且边界条件定义为：$D(0,j)=j\times d$，$D(i,0)=i\times d$。
+    
+    对附件给出的人类SARS冠状病毒\texttt{BJ01.fasta}和\texttt{TOR2.fasta}，试利用Python或MATLAB对上述全局比对算法进行编程，并相应完成：
+
+    \begin{parts}
+        \part 以文件形式给出具有最短加权编辑距离的最优全局比对结果；
+        \begin{solution}
+            最优全局比对结果的文件前16行为：
+            %\begin{shaded}
+            \begin{lstlisting}
+#################################
+sequence_id	base_amount
+BJ01.fasta	29725
+TOR2.fasta	29736
+#################################
+weighted edit distance	38.0
+base matched	29709
+base replacement	16
+base insertion/deletion	11
+#################################
+BJ01.fasta:C--C--AGGAAAAGCCAACCAACCTCGATCTCTTGTAGATCTGTTCTCTAAACGAA
+    symbol:|  |  ||||||||||||||||||||||||||||||||||||||||||||||||||
+TOR2.fasta:CTACCCAGGAAAAGCCAACCAACCTCGATCTCTTGTAGATCTGTTCTCTAAACGAA
+CTTTAAAATCTGTGTAGCTGTCGCTCGGCTGCATGCCTAGTGCACCTACGCAGTAT
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+CTTTAAAATCTGTGTAGCTGTCGCTCGGCTGCATGCCTAGTGCACCTACGCAGTAT
+                
+            \end{lstlisting}
+            %\end{shaded}
+            更多比对结果详见\href{run:./alignment.txt}{\texttt{alignment.txt}}
+        \end{solution}
+
+        \part 以文件形式给出相应的最优编辑转文（edit transcript）；
+        \begin{solution}
+            最优编辑转文的文件前10行为：
+            %\begin{shaded}
+            \begin{lstlisting}
+###########################################
+transformation of BJ01.fasta to TOR2.fasta
+###########################################
+MIIMIIMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+                
+            \end{lstlisting}
+            %\end{shaded}
+            更多比对结果详见\href{run:./transcript.txt}{\texttt{transcript.txt}}
+        \end{solution}
+        \part 试计算加权编辑距离$D(100,100)$、$D(1000,1000)$和$D(10000,10000)$，并给出总的最短编辑距离$D(L_1,L_2)$。
+        \begin{solution}
+            \\
+            $D\left[100,100\right]=16$ \\
+            $D\left[1000,1000\right]=16$ \\
+            $D\left[10000,10000\right]=20$ \\
+            $D\left[L_1,L_2\right]=38$ \\
+        \end{solution}
+    \end{parts}
+\end{questions}
+此次大作业
+
+\end{document}
